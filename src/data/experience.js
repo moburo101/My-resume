@@ -31,7 +31,7 @@ export const experienceEntries = [
       'Configure website tracking and reporting systems.',
       'Troubleshoot WordPress plugins, Elementor, site performance, analytics integrations, and frontend issues.',
       'Support ongoing website development and technical operations.',
-      'Work on both The Daily Circular and Mass Meter Nigeria web properties.',
+      'Work on The Daily Circular web properties.',
       'Assist with API and analytics integration into internal tools.',
     ],
     outcomes: [],
