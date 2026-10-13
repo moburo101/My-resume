@@ -1,0 +1,15 @@
+.skills-section { padding: var(--section-spacing) 20px; border-top: 1px solid var(--border); text-align: left; }
+.skills-eyebrow { margin-bottom: 16px; color: var(--accent); font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; }
+.skills-section h2 { font-family: var(--font-display); font-size: clamp(30px, 3.5vw, 42px); }
+.skills-groups { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; margin: 32px 0 0; padding: 0; list-style: none; }
+.skills-groups > li { min-width: 0; }
+.skills-group { height: 100%; padding: 24px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.skills-group h3 { margin: 0 0 20px; font-size: 20px; font-weight: 500; }
+.skills-list { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.skills-list li { max-width: 100%; padding: 6px 10px; border-radius: 6px; background: var(--canvas); color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
+@media (min-width: 640px) { .skills-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 960px) {
+  .skills-section { padding-inline: 0; }
+  .skills-groups { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .skills-groups > li:last-child { grid-column: span 2; }
+}
