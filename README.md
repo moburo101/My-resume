@@ -4,14 +4,9 @@
 
 Requires Node.js 22.9+ (or Node.js 24). No additional application packages are needed.
 
-1. Copy `.env.example` to `.env` and configure the server-only values:
-   - `BREVO_API_KEY`: your Brevo API key, never a `VITE_` variable.
-   - `BREVO_SENDER_EMAIL`: a sender verified in Brevo.
-   - `CONTACT_TO_EMAIL`: your inbox for contact enquiries.
-   - `CONTACT_ALLOWED_ORIGIN`: the exact frontend origin, such as `http://localhost:5173` locally or your production HTTPS origin.
-2. Run `npm run dev:server` in one terminal and `npm run dev` in another. Vite proxies `/api` to port 3001. Keep the Vite URL consistent with the configured origin.
-3. For production, run `npm run build`, set the production environment values, then `npm start`. The Node server serves both the built site (including `/projects`) and `/api/contact`. A static-only deployment will need a separately deployed API and an `/api` proxy.
-4. Run `npm run test:contact` for mocked delivery and validation tests. Real email delivery requires configured credentials and an enabled Brevo transactional-email account.
+1. Run `npm run dev:server` in one terminal and `npm run dev` in another. Vite proxies `/api` to port 3001. Keep the Vite URL consistent with the configured origin.
+2. For production, run `npm run build`, set the production environment values, then `npm start`. The Node server serves both the built site (including `/projects`) and `/api/contact`. A static-only deployment will need a separately deployed API and an `/api` proxy.
+3. Run `npm run test:contact` for mocked delivery and validation tests. Real email delivery requires configured credentials and an enabled Brevo transactional-email account.
 
 The browser and server share validation rules. Spam controls include a honeypot, an origin check, payload limits, and five submission attempts per IP per fifteen minutes. Rate limits are in memory, reset on server restart, and are local to one server instance. Forwarded IP headers are deliberately not trusted; deployments behind a proxy may share a rate limit until trusted-proxy handling is configured. For multiple instances, use a shared rate-limit store.
 
