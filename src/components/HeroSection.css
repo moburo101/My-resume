@@ -25,11 +25,19 @@
   border-radius: var(--radius);
   text-decoration: none;
   font-weight: 500;
+  transition: color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
 }
 .hero-action-primary { color: var(--surface); background: var(--accent); }
 .hero-action-secondary { color: var(--accent); background: transparent; }
 .hero-action:hover:not(:disabled) { box-shadow: var(--shadow); }
+.hero-action-primary:hover:not(:disabled),
+.hero-action-primary:focus-visible { color: var(--accent); background: transparent; }
+.hero-action-secondary:hover:not(:disabled),
+.hero-action-secondary:focus-visible { color: var(--surface); background: var(--accent); }
 .hero-action:disabled { opacity: 0.55; cursor: not-allowed; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-action { transition: none; }
+}
 .hero-visual {
   width: 100%;
   max-width: 440px;

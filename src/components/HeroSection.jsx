@@ -1,4 +1,5 @@
 import './HeroSection.css'
+import { GoArrowUpRight, GoArrowDown } from "react-icons/go";
 
 function HeroSection({
   name = 'Your Name',
@@ -21,18 +22,18 @@ function HeroSection({
         </p>
         <div className="hero-actions">
           {cvUrl ? (
-            <a className="hero-action hero-action-primary" href={cvUrl} download>Download CV <span aria-hidden="true">&darr;</span></a>
+            <a className="hero-action hero-action-primary" href={cvUrl} download>Download CV <span aria-hidden="true" style={{ paddingTop: '5px' }}><GoArrowDown /></span></a>
           ) : (
-            <button className="hero-action hero-action-primary" type="button" disabled>Download CV <span aria-hidden="true">&darr;</span></button>
+            <button className="hero-action hero-action-primary" type="button" disabled>Download CV <span aria-hidden="true" style={{ paddingTop: '5px' }}><GoArrowDown /></span></button>
           )}
           {workUrl ? (
-            <a className="hero-action hero-action-secondary" href={workUrl}>View Work <span aria-hidden="true">&#8599;</span></a>
+            <a className="hero-action hero-action-secondary" href={workUrl}>View Work <span aria-hidden="true" style={{ paddingTop: '5px' }}><GoArrowUpRight /></span></a>
           ) : (
-            <button className="hero-action hero-action-secondary" type="button" disabled>View Work <span aria-hidden="true">&#8599;</span></button>
+            <button className="hero-action hero-action-secondary" type="button" disabled>View Work <span aria-hidden="true" style={{ paddingTop: '5px' }}><GoArrowUpRight /></span></button>
           )}
         </div>
       </div>
-      <div className="hero-visual">
+      {/* <div className="hero-visual">
         {portraitUrl ? (
           <img className="hero-portrait" src={portraitUrl} alt={`Portrait of ${name}`} />
         ) : (
@@ -42,7 +43,7 @@ function HeroSection({
             <span className="hero-monogram-caption">{name}</span>
           </div>
         )}
-      </div>
+      </div> */}
     </section>
   )
 }

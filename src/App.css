@@ -85,6 +85,12 @@
   color: var(--accent);
 }
 
+.site-header-navigation .site-header-contact:hover,
+.site-header-navigation .site-header-contact:focus-visible {
+  color: var(--surface);
+  background: var(--accent);
+}
+
 @media (min-width: 960px) {
   .site-header {
     flex-wrap: nowrap;

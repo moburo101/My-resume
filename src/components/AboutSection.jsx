@@ -5,7 +5,7 @@ function AboutSection({ statusNote }) {
     <section id="about" className="about-section" tabIndex={-1} aria-labelledby="about-title">
       <div className="about-introduction">
         <p className="about-eyebrow">About me</p>
-        <h2 id="about-title">Building for the people who use the web.</h2>
+        <h2 id="about-title">Building for the people who LOVE to use the web.</h2>
         <p className="about-summary">
           My work brings together interface development, website maintenance,
           and an understanding of how people use digital products.
@@ -20,12 +20,12 @@ function AboutSection({ statusNote }) {
         </p>
         <p>
           That work also involves investigating problems, testing changes, and
-          documenting how things work. Web analytics adds another perspective:
-          translating usage patterns into reports that make the data easier
+          documenting how things work. My use of web analytics also adds another perspective:
+          translating user interactivity and patterns into reports that make the data easier
           to understand.
         </p>
         <aside className="about-status" aria-labelledby="about-status-title">
-          <h3 id="about-status-title">Latest-status review</h3>
+          <h3 id="about-status-title">Current Status</h3>
           <p>{statusNote}</p>
         </aside>
       </div>
