@@ -6,7 +6,6 @@ const navigationLinks = [
   { href: '#experience', label: 'Experience' },
   { href: '#education', label: 'Education' },
   { href: '#skills', label: 'Skills' },
-  { href: '#docs', label: 'Resources' },
   { href: '#social', label: 'Connect' },
 ]
 

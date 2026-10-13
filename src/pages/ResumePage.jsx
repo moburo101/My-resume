@@ -5,18 +5,18 @@ import ExperienceTimeline from '../components/ExperienceTimeline'
 import EducationSection from '../components/EducationSection'
 import SkillGroups from '../components/SkillGroups'
 import ContactForm from '../components/ContactForm'
-import ResourcesSection from '../components/ResourcesSection'
-import SocialSection from '../components/SocialSection'
+import Footer from '../components/Footer'
 import { experienceEntries } from '../data/experience'
 import { educationEntries } from '../data/education'
 import { skillGroups } from '../data/skills'
+import { profile } from '../data/profile'
 
 function ResumePage() {
   return (
     <>
       <SiteHeader />
       <HeroSection
-        name="M'obunoburo Odungide Kendu Arah"
+        name={profile.name}
         profession="Web Developer"
         summary={[
           'Web developer with practical experience in React, WordPress and web analytics.',
@@ -31,12 +31,8 @@ function ResumePage() {
       <SkillGroups groups={skillGroups} />
       <ContactForm />
       <div className="ticks" aria-hidden="true"></div>
-      <section id="next-steps">
-        <ResourcesSection />
-        <SocialSection />
-      </section>
       <div className="ticks" aria-hidden="true"></div>
-      <section id="spacer"></section>
+      <Footer />
     </>
   )
 }

@@ -1,4 +1,5 @@
 import ProjectGallery from '../components/ProjectGallery'
+import Footer from '../components/Footer'
 import { projects } from '../data/projects'
 
 function ProjectsPage() {
@@ -13,6 +14,7 @@ function ProjectsPage() {
       <main>
         <ProjectGallery projects={projects} />
       </main>
+      <Footer />
     </>
   )
 }
