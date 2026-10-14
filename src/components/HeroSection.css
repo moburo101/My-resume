@@ -10,7 +10,11 @@
 .hero-content, .hero-visual { min-width: 0; }
 .hero-eyebrow { color: var(--accent); font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; }
 .hero-content h1 { margin: 16px 0; font-size: clamp(44px, 6vw, 80px); overflow-wrap: anywhere; }
-.hero-profession { font-size: clamp(20px, 2.5vw, 28px); }
+.hero-profession { font-size: clamp(20px, 2.5vw, 28px); min-height: 1.5em; line-height: 1.5; }
+.hero-profession-cursor { color: var(--accent); margin-left: 2px; animation: hero-cursor-blink 1s step-end infinite; }
+@keyframes hero-cursor-blink {
+  50% { opacity: 0; }
+}
 .hero-summary { margin-top: 24px; color: var(--muted); max-width: 58ch; line-height: 1.7; }
 .hero-summary span { display: block; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
@@ -37,6 +41,7 @@
 .hero-action:disabled { opacity: 0.55; cursor: not-allowed; }
 @media (prefers-reduced-motion: reduce) {
   .hero-action { transition: none; }
+  .hero-profession-cursor { display: none; animation: none; }
 }
 .hero-visual {
   width: 100%;

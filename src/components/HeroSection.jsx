@@ -1,9 +1,65 @@
+import { useEffect, useState } from 'react'
 import './HeroSection.css'
 import { GoArrowUpRight, GoArrowDown } from "react-icons/go";
+
+function AnimatedProfession({ profession, professions }) {
+  const [text, setText] = useState(professions?.[0] || profession)
+
+  useEffect(() => {
+    const titles = professions?.length ? professions : [profession]
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let timeoutId
+    let titleIndex = 0
+    let characterCount = titles[0].length
+    let isDeleting = true
+
+    function tick() {
+      const title = titles[titleIndex]
+      characterCount += isDeleting ? -1 : 1
+      setText(title.slice(0, characterCount))
+
+      let delay = isDeleting ? 50 : 100
+      if (characterCount === 0 && isDeleting) {
+        titleIndex = (titleIndex + 1) % titles.length
+        isDeleting = false
+        delay = 350
+      } else if (characterCount === title.length && !isDeleting) {
+        isDeleting = true
+        delay = 2000
+      }
+      timeoutId = window.setTimeout(tick, delay)
+    }
+
+    function restart() {
+      window.clearTimeout(timeoutId)
+      titleIndex = 0
+      characterCount = titles[0].length
+      isDeleting = true
+      setText(titles[0])
+      if (!motionPreference.matches && titles.length > 1) {
+        timeoutId = window.setTimeout(tick, 2000)
+      }
+    }
+
+    restart()
+    motionPreference.addEventListener('change', restart)
+    return () => {
+      window.clearTimeout(timeoutId)
+      motionPreference.removeEventListener('change', restart)
+    }
+  }, [profession, professions])
+
+  return (
+    <p className="hero-profession" aria-label={professions?.join(' and ') || profession}>
+      <span aria-hidden="true">{text}<span className="hero-profession-cursor">|</span></span>
+    </p>
+  )
+}
 
 function HeroSection({
   name = 'Your Name',
   profession = 'Your profession',
+  professions,
   summary = ['A short introduction to what you do.', 'The value you bring to your next team or project.'],
   cvUrl,
   workUrl,
@@ -16,7 +72,7 @@ function HeroSection({
       <div className="hero-content">
         <p className="hero-eyebrow">Hello, I'm</p>
         <h1 id="hero-name">{name}</h1>
-        <p className="hero-profession">{profession}</p>
+        <AnimatedProfession profession={profession} professions={professions} />
         <p className="hero-summary">
           {summary.map((line, index) => <span key={index}>{line}</span>)}
         </p>
