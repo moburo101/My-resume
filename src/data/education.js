@@ -5,7 +5,7 @@ export const educationEntries = [
     degree: 'Bachelor of Science (B.Sc.) in Computer Science',
     institution: 'Obong University',
     location: 'Akwa Ibom State, Nigeria',
-    completionLabel: 'Expected Completion',
-    completionYear: '2026',
+    // completionLabel: '2022 - 2026',
+    completionYear: '2022-2026',
   },
 ]

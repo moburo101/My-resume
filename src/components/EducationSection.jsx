@@ -15,7 +15,7 @@ function EducationSection({ entries = [] }) {
               <p className="education-institution">{entry.institution}</p>
               <p className="education-location">{entry.location}</p>
               <p className="education-completion">
-                {entry.completionLabel}: <time dateTime={entry.completionYear}>{entry.completionYear}</time>
+                {entry.completionLabel} <time dateTime={entry.completionYear}>{entry.completionYear}</time>
               </p>
             </article>
           </li>
