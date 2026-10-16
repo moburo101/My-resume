@@ -6,6 +6,7 @@ const navigationLinks = [
   { href: '#experience', label: 'Experience' },
   { href: '#education', label: 'Education' },
   { href: '#skills', label: 'Skills' },
+  { href: '/projects', label: 'Projects' },
   { href: '#social', label: 'Connect' },
 ]
 
@@ -32,7 +33,9 @@ function SiteHeader() {
 
   function handleNavigation(event) {
     setIsMenuOpen(false)
-    const target = document.querySelector(event.currentTarget.hash)
+    const { hash } = event.currentTarget
+    if (!hash || hash === '#') return
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)))
     target?.focus({ preventScroll: true })
   }
 

@@ -63,7 +63,6 @@ function HeroSection({
   summary = ['A short introduction to what you do.', 'The value you bring to your next team or project.'],
   cvUrl,
   workUrl,
-  portraitUrl,
 }) {
   const initials = name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase()
 

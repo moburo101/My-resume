@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { FiX } from 'react-icons/fi'
 import './ProjectGallery.css'
 
 function getExternalUrl(value) {
@@ -12,12 +13,53 @@ function getExternalUrl(value) {
 
 function ProjectImage({ src, alt }) {
   const [hasError, setHasError] = useState(false)
+  const dialogRef = useRef(null)
   return src && !hasError ? (
-    <img className="project-image" src={src} alt={alt} loading="lazy" onError={() => setHasError(true)} />
+    <>
+      <button className="project-image-trigger" type="button" aria-label={`View full image: ${alt}`} onClick={() => dialogRef.current.showModal()}>
+        <img className="project-image" src={src} alt={alt} loading="lazy" onError={() => setHasError(true)} />
+      </button>
+      <dialog ref={dialogRef} className="project-image-dialog" aria-label={alt}>
+        <button className="project-image-close" type="button" aria-label="Close full image" autoFocus onClick={() => dialogRef.current.close()}><FiX aria-hidden="true" /></button>
+        <img className="project-image-full" src={src} alt={alt} />
+      </dialog>
+    </>
   ) : (
     <div className="project-image-placeholder">
       <span aria-hidden="true">&lt;/&gt;</span>
       <span>Preview coming soon</span>
+    </div>
+  )
+}
+
+function ProjectSlider({ project }) {
+  const images = Array.isArray(project.images) && project.images.length
+    ? project.images
+    : project.imageUrl ? [project.imageUrl] : []
+  const [activeIndex, setActiveIndex] = useState(0)
+  const currentIndex = activeIndex % (images.length || 1)
+  const image = images[currentIndex]
+  const src = typeof image === 'string' ? image : image?.src
+  const alt = (typeof image === 'object' && image?.alt) || project.imageAlt || `Screenshot of ${project.title}`
+
+  function moveSlide(direction) {
+    setActiveIndex((current) => (current + direction + images.length) % images.length)
+  }
+
+  return (
+    <div className="project-slider" role={images.length > 1 ? 'region' : undefined} aria-label={`${project.title} screenshots`}>
+      <ProjectImage key={`${currentIndex}-${src}`} src={src} alt={alt} />
+      {images.length > 1 && (
+        <div className="project-slider-controls">
+          <button type="button" onClick={() => moveSlide(-1)} aria-label={`Previous screenshot of ${project.title}`}>
+            <span aria-hidden="true">&#8592;</span>
+          </button>
+          <span aria-live="polite" aria-atomic="true">{currentIndex + 1} / {images.length}</span>
+          <button type="button" onClick={() => moveSlide(1)} aria-label={`Next screenshot of ${project.title}`}>
+            <span aria-hidden="true">&#8594;</span>
+          </button>
+        </div>
+      )}
     </div>
   )
 }
@@ -40,7 +82,7 @@ function ProjectGallery({ projects = [] }) {
           return (
             <li key={project.id}>
               <article className="project-card" aria-labelledby={`project-${project.id}`}>
-                <ProjectImage key={project.imageUrl || 'placeholder'} src={project.imageUrl} alt={project.imageAlt || `Screenshot of ${project.title}`} />
+                <ProjectSlider project={project} />
                 <div className="project-card-content">
                   <h2 id={`project-${project.id}`}>{project.title}</h2>
                   <dl className="project-details">
